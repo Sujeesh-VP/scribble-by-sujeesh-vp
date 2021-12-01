@@ -9,7 +9,7 @@ class ArticleTest < ActiveSupport::TestCase
       title: "Setting up an account in Scribble",
       content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum finibus justo et nunc posuere,
                 id eleifend tortor dictum. Duis sagittis, ipsum sed ultricies blandit, tortor lacus fringilla ipsum,
-                non iaculis justo massa tincidunt augue. Nam ac elit augue."
+                non iaculis justo massa tincidunt augue. Nam ac elit augue.",
       category_id: @category
       )
   end
