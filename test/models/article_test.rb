@@ -45,8 +45,9 @@ class ArticleTest < ActiveSupport::TestCase
     assert_includes @article.errors.full_messages, "Status can't be blank"
   end
 
-  def test_article_should_have_valid_status
-    @article.status = "published"
-    assert @article.valid?
+  def test_article_should_not_have_invalid_status
+    assert_raises ArgumentError do
+      @article.status = "invalid"
+    end
   end
 end
