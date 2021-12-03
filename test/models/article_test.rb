@@ -34,9 +34,9 @@ class ArticleTest < ActiveSupport::TestCase
     assert @article.invalid?
   end
 
-  def test_article_should_be_valid_without_category
+  def test_article_should_not_be_valid_without_category
     @article.category_id = nil
-    assert_not @article.invalid?
+    assert @article.invalid?
   end
 
   def test_article_should_not_be_valid_and_saved_without_status
