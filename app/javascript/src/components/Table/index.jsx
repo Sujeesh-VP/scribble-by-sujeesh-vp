@@ -104,7 +104,7 @@ const ArticleTable = ({ articles }) => {
     []
   );
 
-  const data = useMemo(() => articles, []);
+  const data = useMemo(() => articles, [articles]);
 
   return <Table columns={columns} data={data} />;
 };
