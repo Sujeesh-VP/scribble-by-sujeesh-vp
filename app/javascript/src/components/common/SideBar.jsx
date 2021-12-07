@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useContext } from "react";
 
-import { Plus, Search, Close } from "@bigbinary/neeto-icons";
-import { Typography } from "@bigbinary/neetoui/v2";
+import { Plus, Search, Close, CheckCircle } from "@bigbinary/neeto-icons";
+import { Typography, Input } from "@bigbinary/neetoui/v2";
 import { MenuBar } from "@bigbinary/neetoui/v2/layouts";
 import { debounce } from "lodash";
 
@@ -14,10 +14,12 @@ const SideBar = () => {
   const [status, setStatus] = useContext(ArticleContext);
   const [category, setCategory] = useContext(CategoryContext);
   const [isSearchCollapsed, setIsSearchCollapsed] = useState(true);
+  const [isInputCollapsed, setIsInputCollapsed] = useState(true);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [state, setState] = useState([]);
   const [count, setCount] = useState([]);
+  const [name, setName] = useState("");
 
   const fetchCategories = async () => {
     try {
@@ -60,10 +62,22 @@ const SideBar = () => {
     setCategories(temp);
   };
 
+  const handleCategory = async event => {
+    event.preventDefault();
+    try {
+      await categoriesApi.create({ category: { name } });
+      setLoading(false);
+      setIsInputCollapsed(true);
+    } catch (error) {
+      logger.error(error);
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     fetchCategories();
     fetchCount();
-  }, [isSearchCollapsed]);
+  }, [isSearchCollapsed, isInputCollapsed]);
 
   if (loading) {
     return <div className="w-screen h-screen"></div>;
@@ -73,7 +87,6 @@ const SideBar = () => {
     <div className="flex">
       <MenuBar showMenu={true} title="Articles">
         <MenuBar.Block
-          key={1}
           label="All"
           count={count.article_count}
           onClick={() => setStatus("all")}
@@ -99,6 +112,7 @@ const SideBar = () => {
             },
             {
               icon: Plus,
+              onClick: () => setIsInputCollapsed(!isInputCollapsed),
             },
             {
               icon: Close,
@@ -120,6 +134,13 @@ const SideBar = () => {
           onCollapse={() => setIsSearchCollapsed(true)}
           onChange={e => handleFilterChange(e.target.value)}
         />
+        {!isInputCollapsed && (
+          <Input
+            placeholder="Enter Category title"
+            onChange={e => setName(e.target.value)}
+            suffix={<CheckCircle onClick={handleCategory} color="blue" />}
+          />
+        )}
         {categories.map((item, index) => {
           return (
             <MenuBar.Block
