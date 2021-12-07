@@ -59,7 +59,7 @@ const Table = ({ columns, data }) => {
                 return (
                   <td
                     {...cell.getCellProps()}
-                    className="w-auto py-4 px-2"
+                    className="w-auto py-4 px-2 capitalize"
                     key={index}
                   >
                     {cell.render("Cell")}
