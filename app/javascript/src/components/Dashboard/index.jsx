@@ -92,6 +92,18 @@ const Dashboard = () => {
     }
   };
 
+  const deleteArticle = async id => {
+    if (confirm("Are you sure?")) {
+      try {
+        await articlesApi.destroy(id);
+        setLoading(true);
+        await fetchArticles();
+      } catch (error) {
+        logger.error(error);
+      }
+    }
+  };
+
   useEffect(() => {
     fetchArticles();
   }, []);
@@ -147,7 +159,7 @@ const Dashboard = () => {
             {articles.length} Articles
           </Typography>
           <div>
-            <ArticleTable articles={articles} />
+            <ArticleTable articles={articles} deleteArticle={deleteArticle} />
           </div>
         </Container>
       </ArticleContext.Provider>

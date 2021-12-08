@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   defaults format: :json do
-    resources :articles, only: %i[index show create]
+    resources :articles, only: %i[index show create destroy], param: :id
     resources :categories, only: %i[index create]
   end
 
