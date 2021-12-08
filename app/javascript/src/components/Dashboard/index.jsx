@@ -140,6 +140,7 @@ const Dashboard = () => {
               size="large"
               icon={Plus}
               className="neeto-ui-bg-secondary-indigo neeto-ui-text-white"
+              to={"/article/new"}
             />
           </div>
           <Typography className="pt-4 font-bold">

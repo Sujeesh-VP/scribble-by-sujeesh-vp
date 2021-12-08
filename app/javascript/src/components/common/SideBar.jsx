@@ -17,7 +17,7 @@ const SideBar = () => {
   const [isInputCollapsed, setIsInputCollapsed] = useState(true);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [state, setState] = useState([]);
+  const [details, setDetails] = useState([]);
   const [count, setCount] = useState([]);
   const [name, setName] = useState("");
 
@@ -25,7 +25,7 @@ const SideBar = () => {
     try {
       const response = await categoriesApi.list();
       setCategories(response.data.categories);
-      setState(response.data.categories);
+      setDetails(response.data.categories);
       setLoading(false);
     } catch (error) {
       logger.error(error);
@@ -49,7 +49,7 @@ const SideBar = () => {
   );
 
   const handleFilterChange = value => {
-    debounceLoadData(value, state);
+    debounceLoadData(value, details);
   };
 
   const handleSearch = (props, list) => {
