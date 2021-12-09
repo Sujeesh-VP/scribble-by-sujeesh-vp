@@ -18,7 +18,7 @@ const Table = ({ columns, data, deleteArticle, editArticle }) => {
             {headerGroup.headers.map((column, index) => (
               <th
                 {...column.getHeaderProps()}
-                className="font-normal font-gray-500 pb-4 px-2"
+                className="font-normal font-gray-500 pb-4 px-2 uppercase"
                 key={index}
               >
                 {column.render("Header")}
@@ -43,7 +43,7 @@ const Table = ({ columns, data, deleteArticle, editArticle }) => {
                       {cell.render("Cell")}
                     </td>
                   );
-                } else if (index === 5) {
+                } else if (index === row.cells.length - 1) {
                   return (
                     <td
                       {...cell.getCellProps()}
@@ -80,45 +80,37 @@ const Table = ({ columns, data, deleteArticle, editArticle }) => {
   );
 };
 
-const ArticleTable = ({ articles, deleteArticle, editArticle }) => {
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: "TITLE",
-        accessor: "title",
-      },
-      {
-        Header: "DATE",
-        accessor: "date",
-      },
-      {
-        Header: "AUTHOR",
-        accessor: "author",
-      },
-      {
-        Header: "CATEGORY",
-        accessor: "name",
-      },
-      {
-        Header: "STATUS",
-        accessor: "status",
-      },
-      {
-        Header: " ",
-      },
-    ],
-    []
-  );
+const ArticleTable = ({
+  articles,
+  deleteArticle,
+  editArticle,
+  tableColumns,
+}) => {
+  const columns = tableColumns
+    .filter(item => item.selected)
+    .map((item, index) => {
+      if (item.value === "category") {
+        return { Header: item.value, accessor: "name", id: index };
+      }
+
+      if (item.value !== "") {
+        return { Header: item.value, accessor: item.value, id: index };
+      }
+
+      return { Header: "", id: index };
+    });
 
   const data = useMemo(() => articles, [articles]);
 
-  return (
+  return columns.length !== 1 ? (
     <Table
       columns={columns}
       data={data}
       deleteArticle={deleteArticle}
       editArticle={editArticle}
     />
+  ) : (
+    <div className="flex justify-center pt-32">Select atleast one column</div>
   );
 };
 
