@@ -13,4 +13,14 @@ const INITIAL_VALUES = {
   status: "",
 };
 
-export { VALIDATION_SCHEMA, INITIAL_VALUES };
+const COLUMN_TITLE = ["title", "date", "author", "category", "status", ""];
+
+const COLUMN_HEADERS = COLUMN_TITLE.map(title => {
+  return {
+    key: title,
+    value: title,
+    selected: true,
+  };
+});
+
+export { VALIDATION_SCHEMA, INITIAL_VALUES, COLUMN_HEADERS };

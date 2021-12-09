@@ -1,11 +1,18 @@
 import React, { useState, useEffect, useCallback } from "react";
 
 import { Search, Plus } from "@bigbinary/neeto-icons";
-import { Input, Dropdown, Button, Typography } from "@bigbinary/neetoui/v2";
+import {
+  Input,
+  Button,
+  Typography,
+  Dropdown,
+  Checkbox,
+} from "@bigbinary/neetoui/v2";
 import { debounce } from "lodash";
 import { useHistory } from "react-router-dom";
 
 import articlesApi from "../../apis/articles";
+import { COLUMN_HEADERS } from "../../common/constant";
 import Container from "../common/Container";
 import ArticleTable from "../Table";
 
@@ -17,6 +24,7 @@ const Dashboard = () => {
   const [category, setCategory] = useState("");
   const [inputValue, setInputValue] = useState("");
   const history = useHistory();
+  const [tableColumns, setTableColumns] = useState(COLUMN_HEADERS);
 
   const fetchArticles = async () => {
     try {
@@ -113,6 +121,18 @@ const Dashboard = () => {
     });
   };
 
+  const handleChange = e => {
+    const selectedColumns = tableColumns.map(item => {
+      if (item.value === e.target.name) {
+        return { ...item, selected: !item.selected };
+      }
+
+      return item;
+    });
+
+    setTableColumns(selectedColumns);
+  };
+
   useEffect(() => {
     fetchArticles();
   }, []);
@@ -151,9 +171,22 @@ const Dashboard = () => {
               position="bottom-end"
               buttonStyle="secondary"
             >
-              <li>Option 1</li>
-              <li>Option 2</li>
-              <li>Option 3</li>
+              <form onChange={handleChange}>
+                <Typography className="py-2 px-2">Columns</Typography>
+                {tableColumns.map((item, index) => {
+                  return (
+                    index < 5 && (
+                      <Checkbox
+                        label={item.value}
+                        id={item.value}
+                        key={index}
+                        className="py-2 px-2"
+                        defaultChecked={item.selected}
+                      />
+                    )
+                  );
+                })}
+              </form>
             </Dropdown>
             <Button
               label="Add New Article"
@@ -172,6 +205,7 @@ const Dashboard = () => {
               articles={articles}
               deleteArticle={deleteArticle}
               editArticle={editArticle}
+              tableColumns={tableColumns}
             />
           </div>
         </Container>
