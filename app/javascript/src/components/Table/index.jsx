@@ -3,7 +3,7 @@ import React, { useMemo } from "react";
 import { Edit, Delete } from "@bigbinary/neeto-icons";
 import { useTable } from "react-table";
 
-const Table = ({ columns, data, deleteArticle }) => {
+const Table = ({ columns, data, deleteArticle, editArticle }) => {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({
       columns,
@@ -54,7 +54,10 @@ const Table = ({ columns, data, deleteArticle }) => {
                         size={18}
                         onClick={() => deleteArticle(cell.row.original?.id)}
                       />
-                      <Edit size={18} />
+                      <Edit
+                        size={18}
+                        onClick={() => editArticle(cell.row.original)}
+                      />
                     </td>
                   );
                 }
@@ -77,7 +80,7 @@ const Table = ({ columns, data, deleteArticle }) => {
   );
 };
 
-const ArticleTable = ({ articles, deleteArticle }) => {
+const ArticleTable = ({ articles, deleteArticle, editArticle }) => {
   const columns = React.useMemo(
     () => [
       {
@@ -109,7 +112,14 @@ const ArticleTable = ({ articles, deleteArticle }) => {
 
   const data = useMemo(() => articles, [articles]);
 
-  return <Table columns={columns} data={data} deleteArticle={deleteArticle} />;
+  return (
+    <Table
+      columns={columns}
+      data={data}
+      deleteArticle={deleteArticle}
+      editArticle={editArticle}
+    />
+  );
 };
 
 export default ArticleTable;

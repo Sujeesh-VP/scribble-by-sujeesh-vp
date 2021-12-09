@@ -4,7 +4,8 @@ import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 
 import { setAuthHeaders } from "apis/axios";
 
-import NewArticle from "./components/Article";
+import EditArticle from "./components/Article/Edit";
+import NewArticle from "./components/Article/New";
 import Dashboard from "./components/Dashboard";
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Dashboard} />
         <Route exact path="/article/new" component={NewArticle} />
+        <Route exact path="/article/edit" component={EditArticle} />
       </Switch>
     </Router>
   );

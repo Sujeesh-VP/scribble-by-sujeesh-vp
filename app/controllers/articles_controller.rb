@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ArticlesController < ApplicationController
-  before_action :load_article, only: %i[destroy]
+  before_action :load_article, only: %i[destroy update]
   def index
     @articles = Article.all
   end
@@ -17,6 +17,15 @@ class ArticlesController < ApplicationController
     else
       render status: :unprocessable_entity,
         json: { error: article.errors.full_messages.to_sentence }
+    end
+  end
+
+  def update
+    if @article.update(article_params)
+      render status: :ok, json: { notice: "Successfully updated article." }
+    else
+      render status: :unprocessable_entity,
+        json: { error: @article.errors.full_messages.to_sentence }
     end
   end
 

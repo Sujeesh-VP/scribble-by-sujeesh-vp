@@ -3,6 +3,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Search, Plus } from "@bigbinary/neeto-icons";
 import { Input, Dropdown, Button, Typography } from "@bigbinary/neetoui/v2";
 import { debounce } from "lodash";
+import { useHistory } from "react-router-dom";
 
 import articlesApi from "../../apis/articles";
 import Container from "../common/Container";
@@ -15,6 +16,7 @@ const Dashboard = () => {
   const [status, setStatus] = useState("all");
   const [category, setCategory] = useState("");
   const [inputValue, setInputValue] = useState("");
+  const history = useHistory();
 
   const fetchArticles = async () => {
     try {
@@ -104,6 +106,13 @@ const Dashboard = () => {
     }
   };
 
+  const editArticle = details => {
+    history.push({
+      pathname: `/article/edit`,
+      state: { details },
+    });
+  };
+
   useEffect(() => {
     fetchArticles();
   }, []);
@@ -159,7 +168,11 @@ const Dashboard = () => {
             {articles.length} Articles
           </Typography>
           <div>
-            <ArticleTable articles={articles} deleteArticle={deleteArticle} />
+            <ArticleTable
+              articles={articles}
+              deleteArticle={deleteArticle}
+              editArticle={editArticle}
+            />
           </div>
         </Container>
       </ArticleContext.Provider>
