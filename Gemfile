@@ -30,6 +30,9 @@ group :development, :test do
   # For code formatting and linting
   gem "rubocop"
   gem "rubocop-rails"
+
+  # sqlite database for development and testing
+  gem "sqlite3", "~> 1.4"
 end
 
 group :development do
@@ -54,3 +57,6 @@ gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # bring React to our Ruby on Rails application
 gem "react-rails"
+
+# production database
+gem "pg", group: [:production]
