@@ -29,11 +29,13 @@ const NavBar = () => {
             style="link"
             label="Article"
             className="neeto-ui-text-black"
+            to={"/dashboard"}
           />
           <Button
             style="link"
             label="Settings"
             className="neeto-ui-text-black"
+            to={"/settings"}
           />
         </div>
       }

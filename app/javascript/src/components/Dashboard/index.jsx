@@ -153,7 +153,7 @@ const Dashboard = () => {
   return (
     <CategoryContext.Provider value={[category, setCategory]}>
       <ArticleContext.Provider value={[status, setStatus]}>
-        <Container>
+        <Container page={"dashboard"}>
           <div className="flex space-x-4 justify-end">
             <div className="w-1/3">
               <Input

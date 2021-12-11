@@ -31,7 +31,7 @@ const EditArticle = () => {
       });
 
       setLoading(false);
-      history.push("/");
+      history.push("/dashboard");
     } catch (error) {
       logger.error(error);
       setLoading(false);
