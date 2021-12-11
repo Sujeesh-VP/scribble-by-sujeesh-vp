@@ -5,12 +5,12 @@ import { Typography, Input } from "@bigbinary/neetoui/v2";
 import { MenuBar } from "@bigbinary/neetoui/v2/layouts";
 import { debounce } from "lodash";
 
-import articlesApi from "../../apis/articles";
-import categoriesApi from "../../apis/categories";
-import { ArticleContext } from "../Dashboard";
-import { CategoryContext } from "../Dashboard";
+import articlesApi from "../../../apis/articles";
+import categoriesApi from "../../../apis/categories";
+import { ArticleContext } from "../../Dashboard";
+import { CategoryContext } from "../../Dashboard";
 
-const SideBar = () => {
+const ArticleSideBar = () => {
   const [status, setStatus] = useContext(ArticleContext);
   const [category, setCategory] = useContext(CategoryContext);
   const [isSearchCollapsed, setIsSearchCollapsed] = useState(true);
@@ -157,4 +157,4 @@ const SideBar = () => {
   );
 };
 
-export default SideBar;
+export default ArticleSideBar;
