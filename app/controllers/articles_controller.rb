@@ -13,7 +13,7 @@ class ArticlesController < ApplicationController
   def create
     article = Article.new(article_params)
     if article.save
-      render status: :ok, json: {}
+      render status: :ok, json: { notice: t("successfully_created", entity: "Article") }
     else
       render status: :unprocessable_entity,
         json: { error: article.errors.full_messages.to_sentence }
@@ -22,7 +22,7 @@ class ArticlesController < ApplicationController
 
   def update
     if @article.update(article_params)
-      render status: :ok, json: { notice: "Successfully updated article." }
+      render status: :ok, json: { notice: t("successfully_updated", entity: "Article") }
     else
       render status: :unprocessable_entity,
         json: { error: @article.errors.full_messages.to_sentence }
@@ -31,7 +31,7 @@ class ArticlesController < ApplicationController
 
   def destroy
     if @article.destroy
-      render status: :ok, json: { notice: "Successfully deleted article." }
+      render status: :ok, json: { notice: t("successfully_deleted", entity: "Article") }
     else
       render status: :unprocessable_entity,
         json: { error: @article.errors.full_messages.to_sentence }
@@ -47,7 +47,7 @@ class ArticlesController < ApplicationController
     def load_article
       @article = Article.find_by(id: params[:id])
       unless @article
-        render status: :not_found, json: { error: "article not found" }
+        render status: :not_found, json: { error: t("article.not_found") }
       end
     end
 end
