@@ -14,6 +14,7 @@ end
 
 def create_sample_data!
   puts 'Seeding with sample data...'
+  SiteSetting.create! site_name: "Spinkart", password: "welcome123"
   category = create_category! name: "Getting Started"
   create_article! title: "Welcome to Scribble", status: "draft", category: category
   create_article! title: "Writing an article", status: "published", category: category
@@ -25,6 +26,7 @@ def create_sample_data!
   create_article! title: "Typography", status: "draft", category: category
   create_article! title: "Font size", status: "published", category: category
   create_article! title: "Font weight", status: "draft", category: category
+  puts 'Done! Now you can login the knowledge base using password "welcome123"'
 end
 
 def create_category!(attributes = {})
