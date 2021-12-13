@@ -60,3 +60,6 @@ gem "react-rails"
 
 # production database
 gem "pg", group: [:production]
+
+# Acts As List
+gem "acts_as_list"
