@@ -27,7 +27,7 @@ const RedirectionTable = ({
           <Input
             value={editFromPath}
             onChange={e => setEditFromPath(e.target.value)}
-            error={editFromPath.trim().length === 0 && "Please enter from path"}
+            error={editFromPath.trim().length === 0 && "Please enter From path"}
           />
         ) : (
           <Typography className="text-left">{item.from}</Typography>
@@ -38,7 +38,7 @@ const RedirectionTable = ({
           <Input
             value={editToPath}
             onChange={e => setEditToPath(e.target.value)}
-            error={editToPath.trim().length === 0 && "Please enter to path"}
+            error={editToPath.trim().length === 0 && "Please enter To path"}
           />
         ) : (
           <Typography className="text-left">{item.to}</Typography>

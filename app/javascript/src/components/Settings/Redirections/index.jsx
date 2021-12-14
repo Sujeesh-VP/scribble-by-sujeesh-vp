@@ -73,20 +73,42 @@ const RedirectionsPage = () => {
         new links. All redirections are performed with 301 status codes to be
         SEO friendly.
       </Typography>
-      <div className="neeto-ui-bg-pastel-blue w-2/3 px-4 py-4">
-        {redirections.map((item, index) => {
-          return (
-            <RedirectionTable
-              item={item}
-              index={index}
-              handleDelete={handleDelete}
-              handleEdit={handleEdit}
-              key={index}
-              editRedirection={editRedirection}
-              setEditRedirection={setEditRedirection}
-            />
-          );
-        })}
+      <div className="neeto-ui-bg-pastel-blue w-2/3 px-4 py-4 flex flex-col">
+        <div className="flex justify-between pb-2 pt-4">
+          <Typography
+            className="w-1/2 neeto-ui-text-gray-400 font-bold"
+            style="body2"
+          >
+            FROM PATH
+          </Typography>
+          <Typography
+            className="w-1/2 neeto-ui-text-gray-400 font-bold"
+            style="body2"
+          >
+            TO PATH
+          </Typography>
+          <Typography
+            className="w-1/7 pr-4 neeto-ui-text-gray-400 font-bold"
+            style="body2"
+          >
+            ACTIONS
+          </Typography>
+        </div>
+        <div>
+          {redirections.map((item, index) => {
+            return (
+              <RedirectionTable
+                item={item}
+                index={index}
+                handleDelete={handleDelete}
+                handleEdit={handleEdit}
+                key={index}
+                editRedirection={editRedirection}
+                setEditRedirection={setEditRedirection}
+              />
+            );
+          })}
+        </div>
         <NewRedirection
           newRedirection={newRedirection}
           setNewRedirection={setNewRedirection}

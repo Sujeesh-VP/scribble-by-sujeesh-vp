@@ -32,13 +32,17 @@ function NewRedirection({ newRedirection, setNewRedirection }) {
             placeholder="https://scribble.com"
             value={fromPath}
             onChange={e => setFromPath(e.target.value)}
+            error={fromPath.trim().length === 0 && "Please enter From path"}
           />
           <Input
             placeholder="https://scribble.com"
             value={toPath}
             onChange={e => setToPath(e.target.value)}
+            error={toPath.trim().length === 0 && "Please enter To path"}
           />
-          <Check onClick={handleSubmit} />
+          {fromPath.trim().length !== 0 && toPath.trim().length !== 0 && (
+            <Check onClick={handleSubmit} />
+          )}
         </div>
       )}
     </div>
