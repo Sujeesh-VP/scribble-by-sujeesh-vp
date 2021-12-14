@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.redirections @redirections do |redirection|
   json.id redirection.id
   json.from redirection.from_path
