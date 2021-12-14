@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :articles, except: %i[new edit], param: :id
     resources :categories, except: %i[new edit], param: :id
     resource :site_settings, only: %i[show update]
+    resources :redirections, except: %i[new edit], param: :id
   end
 
   root "home#index"

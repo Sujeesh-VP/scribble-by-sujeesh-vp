@@ -1,12 +1,68 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { Plus, Check } from "@bigbinary/neeto-icons";
-import { Typography, Input } from "@bigbinary/neetoui/v2";
+import { Plus } from "@bigbinary/neeto-icons";
+import { Typography } from "@bigbinary/neetoui/v2";
 
-import RedirectionTable from "./Table";
+import NewRedirection from "./NewRedirection";
+import RedirectionTable from "./RedirectionTable";
+
+import redirectionsApi from "../../../apis/redirections";
 
 const RedirectionsPage = () => {
   const [newRedirection, setNewRedirection] = useState(false);
+  const [redirections, setRedirections] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [editRedirection, setEditRedirection] = useState("");
+
+  const fetchRedirections = async () => {
+    try {
+      const response = await redirectionsApi.list();
+      setRedirections(response.data.redirections);
+      setLoading("");
+    } catch (error) {
+      logger.error(error);
+      setLoading(false);
+    }
+  };
+
+  const handleDelete = async id => {
+    if (confirm("Are you sure?")) {
+      try {
+        await redirectionsApi.destroy(id);
+        setLoading(false);
+        await fetchRedirections();
+      } catch (error) {
+        logger.error(error);
+      }
+    }
+  };
+
+  const handleEdit = async values => {
+    const { editFromPath, editToPath } = values;
+    try {
+      await redirectionsApi.update({
+        id: editRedirection,
+        payload: {
+          redirection: { from_path: editFromPath, to_path: editToPath },
+        },
+      });
+      setLoading(false);
+      setEditRedirection("");
+      await fetchRedirections();
+    } catch (error) {
+      logger.error(error);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchRedirections();
+  }, [newRedirection]);
+
+  if (loading) {
+    return <div className="w-screen h-screen"></div>;
+  }
+
   return (
     <div className="flex flex-col items-center pt-4">
       <Typography style="h1" className="w-2/3">
@@ -17,22 +73,33 @@ const RedirectionsPage = () => {
         new links. All redirections are performed with 301 status codes to be
         SEO friendly.
       </Typography>
-      <div className=" neeto-ui-bg-pastel-blue w-2/3">
-        <RedirectionTable />
-        {newRedirection && (
-          <div className="flex pl-1 space-x-4 bg-white py-2 mx-8 pr-4">
-            <Input placeholder="https://scribble.com" />
-            <Input placeholder="https://scribble.com" />
-            <Check />
-          </div>
+      <div className="neeto-ui-bg-pastel-blue w-2/3 px-4 py-4">
+        {redirections.map((item, index) => {
+          return (
+            <RedirectionTable
+              item={item}
+              index={index}
+              handleDelete={handleDelete}
+              handleEdit={handleEdit}
+              key={index}
+              editRedirection={editRedirection}
+              setEditRedirection={setEditRedirection}
+            />
+          );
+        })}
+        <NewRedirection
+          newRedirection={newRedirection}
+          setNewRedirection={setNewRedirection}
+        />
+        {!newRedirection && (
+          <Typography
+            className="flex neeto-ui-text-secondary-indigo py-4"
+            onClick={() => setNewRedirection(!newRedirection)}
+          >
+            <Plus />
+            Add New Redirection
+          </Typography>
         )}
-        <Typography
-          className="flex pl-8 neeto-ui-text-secondary-indigo py-4"
-          onClick={() => setNewRedirection(!newRedirection)}
-        >
-          <Plus />
-          Add New Redirection
-        </Typography>
       </div>
     </div>
   );

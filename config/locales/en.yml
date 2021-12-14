@@ -39,3 +39,5 @@ en:
     not_found: "Article not found"
   category:
     not_found: "Category not found"
+  redirection:
+    not_found: "Redirection not found"
