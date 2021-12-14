@@ -21,4 +21,4 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* Application URL: https://scribble-by-sujeesh-vp.herokuapp.com/
+* Application URL: https://scribble-by-sujeesh-vp.herokuapp.com/dashboard

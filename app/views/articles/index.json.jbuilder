@@ -8,6 +8,5 @@ json.articles @articles do |article|
     :author
   json.date article.created_at.to_date.to_s(:long)
   json.status article.status
-  json.extract! article.category,
-    :name
+  json.name article&.category&.name
 end
