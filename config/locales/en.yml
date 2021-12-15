@@ -37,6 +37,8 @@ en:
     not_found: "Site Settings not found"
   article:
     not_found: "Article not found"
+    slug:
+      immutable: "is immutable!"
   category:
     not_found: "Category not found"
   redirection:

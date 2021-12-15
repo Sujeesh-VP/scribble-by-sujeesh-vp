@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import GeneralPage from "./General";
-import ManageCategoriesPage from "./Manage Categories";
+import ManageCategoriesPage from "./ManageCategories";
 import RedirectionsPage from "./Redirections";
 
 import Container from "../common/Container";

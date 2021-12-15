@@ -3,3 +3,8 @@
 @import "tailwindcss/utilities";
 @import "@bigbinary/neetoui/v2";
 @import "react-toastify/dist/ReactToastify.min.css";
+
+[id*=neeto-ui-accordion-item-] {
+  flex-direction: row-reverse !important;
+  justify-content: flex-end !important;
+}

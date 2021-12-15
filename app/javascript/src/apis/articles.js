@@ -5,6 +5,7 @@ const show = () => axios.get("articles/show");
 const create = payload => axios.post("/articles/", payload);
 const destroy = id => axios.delete(`/articles/${id}`);
 const update = ({ id, payload }) => axios.put(`/articles/${id}`, payload);
+const display = slug => axios.get(`/public/articles/${slug}`);
 
 const articlesApi = {
   list,
@@ -12,6 +13,7 @@ const articlesApi = {
   create,
   destroy,
   update,
+  display,
 };
 
 export default articlesApi;

@@ -9,6 +9,11 @@ Rails.application.routes.draw do
     resources :redirections, except: %i[new edit], param: :id
   end
 
+  namespace :public do
+    resources :categories, only: %i[index show], param: :slug
+    resources :articles, only: %i[show], param: :slug
+  end
+
   root "home#index"
   get "*path", to: "home#index", via: :all
 
