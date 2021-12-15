@@ -8,8 +8,8 @@ import categoriesApi from "../../../apis/categories";
 import { VALIDATION_SCHEMA, INITIAL_VALUES } from "../../../common/constant";
 
 const ArticleForm = ({
-  handleSubmitNew,
-  handleSubmitEdit,
+  handleCreate,
+  handleEdit,
   setStatus,
   status,
   loading,
@@ -42,7 +42,7 @@ const ArticleForm = ({
     <Formik
       initialValues={details || INITIAL_VALUES}
       validationSchema={VALIDATION_SCHEMA}
-      onSubmit={details ? handleSubmitEdit : handleSubmitNew}
+      onSubmit={details ? handleEdit : handleCreate}
     >
       <Form className="flex flex-col pt-10">
         <div className="flex self-center w-1/2 pb-4 space-x-2">

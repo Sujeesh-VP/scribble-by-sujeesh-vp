@@ -41,7 +41,7 @@ const GeneralPage = () => {
     }
   };
 
-  const handleSubmitPassword = async () => {
+  const handlePassword = async () => {
     setLoading(true);
     const values = isPassword
       ? { site_name: siteName, password: password }
@@ -133,7 +133,7 @@ const GeneralPage = () => {
             label="Save Changes"
             style="secondary"
             className="neeto-ui-bg-secondary-indigo neeto-ui-text-white"
-            onClick={() => handleSubmitPassword()}
+            onClick={() => handlePassword()}
             disabled={
               (!passwordValid && !passwordPresent && isPassword) ||
               siteName.trim().length === 0

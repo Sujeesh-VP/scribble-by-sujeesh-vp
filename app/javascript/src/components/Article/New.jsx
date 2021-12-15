@@ -13,7 +13,7 @@ const NewArticle = () => {
 
   const history = useHistory();
 
-  const handleSubmitNew = async values => {
+  const handleCreate = async values => {
     const { title, category, content } = values;
     try {
       await articlesApi.create({
@@ -36,7 +36,7 @@ const NewArticle = () => {
     <div>
       <NavBar />
       <ArticleForm
-        handleSubmitNew={handleSubmitNew}
+        handleCreate={handleCreate}
         setStatus={setStatus}
         status={status}
         setLoading={setLoading}
