@@ -1,6 +1,8 @@
 import { Toastr } from "@bigbinary/neetoui/v2";
 import axios from "axios";
 
+import { getFromLocalStorage } from "../helpers/storage";
+
 const DEFAULT_ERROR_NOTIFICATION = "Something went wrong!";
 
 const setAuthHeaders = (setLoading = () => null) => {
@@ -11,6 +13,10 @@ const setAuthHeaders = (setLoading = () => null) => {
       .querySelector('[name="csrf-token"]')
       .getAttribute("content"),
   };
+  const token = getFromLocalStorage("authToken");
+  if (token) {
+    axios.defaults.headers["X-Auth-Token"] = token;
+  }
   setLoading(false);
 };
 
@@ -27,13 +33,13 @@ const handleSuccessResponse = response => {
 
 const handleErrorResponse = axiosErrorObject => {
   if (axiosErrorObject.response?.status === 401) {
-    setTimeout(() => (window.location.href = "/dashboard"), 2000);
+    setTimeout(() => (window.location.href = "/login"), 2000);
   }
   Toastr.error(
     axiosErrorObject.response?.data?.error || DEFAULT_ERROR_NOTIFICATION
   );
   if (axiosErrorObject.response?.status === 423) {
-    window.location.href = "/dashboard";
+    window.location.href = "/";
   }
 
   return Promise.reject(axiosErrorObject);

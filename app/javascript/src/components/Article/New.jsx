@@ -25,7 +25,7 @@ const NewArticle = () => {
         },
       });
       setLoading(false);
-      history.push("/dashboard");
+      history.push("/");
     } catch (error) {
       logger.error(error);
       setLoading(false);

@@ -8,6 +8,7 @@ class SiteSetting < ApplicationRecord
                         format: { with: VALID_PASSWORD_REGEX }, if: -> { password.present? }
 
   has_secure_password :password, validations: false
+  has_secure_token :authentication_token
 
   def setPasswordAsNil
     self.password = nil

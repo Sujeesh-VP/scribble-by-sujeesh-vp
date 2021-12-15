@@ -16,7 +16,7 @@ const SidePanel = ({ categories }) => {
                   return (
                     <NavLink
                       key={number}
-                      to={`/public/articles/${article.slug}`}
+                      to={`/scribble/articles/${article.slug}`}
                       activeClassName="text-indigo-500"
                       className={"text-gray-900"}
                     >

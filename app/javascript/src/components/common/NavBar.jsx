@@ -5,6 +5,10 @@ import { Button } from "@bigbinary/neetoui/v2";
 import { Header } from "@bigbinary/neetoui/v2/layouts";
 
 const NavBar = () => {
+  const handleClick = () => {
+    window.open("/scribble", "_blank");
+  };
+
   return (
     <Header
       className="shadow"
@@ -16,6 +20,7 @@ const NavBar = () => {
           style="secondary"
           size="large"
           className="mr-6"
+          onClick={() => handleClick()}
         />
       }
       title={
@@ -29,7 +34,7 @@ const NavBar = () => {
             style="link"
             label="Article"
             className="neeto-ui-text-black"
-            to={"/dashboard"}
+            to={"/"}
           />
           <Button
             style="link"
