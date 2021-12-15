@@ -39,8 +39,7 @@ const EUI = () => {
     }
   };
 
-  const fetchArticles = async () => {
-    setLoading(true);
+  const fetchArticles = async slug => {
     try {
       const response = await articlesApi.display(slug);
       setArticles(response.data);
@@ -53,7 +52,7 @@ const EUI = () => {
 
   useEffect(() => {
     fetchCategories();
-    fetchArticles();
+    fetchArticles(slug);
     fetchSiteSettings();
   }, [slug]);
 
