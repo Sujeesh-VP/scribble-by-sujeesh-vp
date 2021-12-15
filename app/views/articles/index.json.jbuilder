@@ -6,7 +6,7 @@ json.articles @articles do |article|
     :title,
     :content,
     :author
-  json.date article.published? ? article.updated_at.to_date.to_s(:long): "-"
+  json.date article.published? ? article.updated_at.to_date.to_s(:long) : "-"
   json.status article.status
   json.name article&.category&.name || "-"
 end
