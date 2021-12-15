@@ -84,7 +84,7 @@ const ArticleForm = ({
           >
             <li onClick={() => setStatus("published")}>Published</li>
           </Dropdown>
-          <Button style="text" label="Cancel" to={"/dashboard"} />
+          <Button style="text" label="Cancel" to={"/"} />
         </div>
       </Form>
     </Formik>

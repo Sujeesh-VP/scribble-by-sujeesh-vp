@@ -20,11 +20,4 @@ class SiteSettingsController < ApplicationController
     def site_setting_params
       params.require(:site_setting).permit(:site_name, :password)
     end
-
-    def load_site_setting
-      @site_setting = SiteSetting.first
-      unless @site_setting
-        render status: :not_found, json: { error: t("site_settings.not_found") }
-      end
-    end
 end

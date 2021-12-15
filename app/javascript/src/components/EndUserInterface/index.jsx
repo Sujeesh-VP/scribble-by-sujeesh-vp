@@ -12,7 +12,7 @@ function EndUserInterface() {
     try {
       const response = await categoriesApi.userList();
       history.push(
-        `/public/articles/${response.data.categories[0].articles[0].slug}`
+        `/scribble/articles/${response.data.categories[0].articles[0].slug}`
       );
     } catch (error) {
       logger.error(error);

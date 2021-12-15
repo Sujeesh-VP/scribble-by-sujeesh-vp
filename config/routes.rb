@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   namespace :public do
     resources :categories, only: %i[index show], param: :slug
     resources :articles, only: %i[show], param: :slug
+    resource :sessions, only: %[create]
   end
 
   root "home#index"
