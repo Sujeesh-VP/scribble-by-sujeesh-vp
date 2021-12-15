@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Button, Dropdown } from "@bigbinary/neetoui/v2";
+import { Button, Dropdown, PageLoader } from "@bigbinary/neetoui/v2";
 import { Input, Select, Textarea } from "@bigbinary/neetoui/v2/formik";
 import { Formik, Form } from "formik";
 
@@ -35,7 +35,11 @@ const ArticleForm = ({
   }, []);
 
   if (loading) {
-    return <div className="w-screen h-screen"></div>;
+    return (
+      <div className="w-screen h-screen">
+        <PageLoader />
+      </div>
+    );
   }
 
   return (

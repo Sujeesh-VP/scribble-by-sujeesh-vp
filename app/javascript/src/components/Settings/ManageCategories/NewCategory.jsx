@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { Plus, Check } from "@bigbinary/neeto-icons";
-import { Typography, Input } from "@bigbinary/neetoui/v2";
+import { Typography, Input, PageLoader } from "@bigbinary/neetoui/v2";
 
 import categoriesApi from "../../../apis/categories";
 
@@ -25,7 +25,11 @@ const NewCategory = ({ setRefresh, refresh }) => {
   };
 
   if (loading) {
-    return <div className="w-screen h-screen"></div>;
+    return (
+      <div className="w-screen h-screen">
+        <PageLoader />
+      </div>
+    );
   }
 
   return (

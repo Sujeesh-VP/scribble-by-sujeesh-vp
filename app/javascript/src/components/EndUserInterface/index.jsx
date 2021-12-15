@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 
+import { PageLoader } from "@bigbinary/neetoui/v2";
 import { useHistory } from "react-router-dom";
 
 import categoriesApi from "../../apis/categories";
@@ -25,7 +26,11 @@ function EndUserInterface() {
   }, []);
 
   if (loading) {
-    return <div className="w-screen h-screen"></div>;
+    return (
+      <div className="w-screen h-screen">
+        <PageLoader />
+      </div>
+    );
   }
 
   return <div>Error</div>;

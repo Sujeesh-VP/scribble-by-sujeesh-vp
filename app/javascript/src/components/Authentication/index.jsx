@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Typography, Input, Button } from "@bigbinary/neetoui/v2";
+import { Typography, Input, Button, PageLoader } from "@bigbinary/neetoui/v2";
 
 import authApi from "../../apis/auth";
 import { setAuthHeaders } from "../../apis/axios";
@@ -22,13 +22,17 @@ const Authentication = () => {
       window.location.href = "/welcome";
     } catch (error) {
       logger.error(error);
-    } finally {
+
       setLoading(false);
     }
   };
 
   if (loading) {
-    return <div className="w-screen h-screen"></div>;
+    return (
+      <div className="w-screen h-screen">
+        <PageLoader />
+      </div>
+    );
   }
 
   return (

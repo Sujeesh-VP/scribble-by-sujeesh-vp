@@ -7,6 +7,7 @@ import {
   Checkbox,
   Button,
   Label,
+  PageLoader,
 } from "@bigbinary/neetoui/v2";
 
 import siteSettingsApi from "../../../apis/siteSettings";
@@ -76,7 +77,11 @@ const GeneralPage = () => {
   }, []);
 
   if (loading) {
-    return <div className="w-screen h-screen"></div>;
+    return (
+      <div className="mx-auto h-screen">
+        <PageLoader />
+      </div>
+    );
   }
 
   return (
