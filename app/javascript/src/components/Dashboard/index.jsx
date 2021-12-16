@@ -7,6 +7,7 @@ import {
   Typography,
   Dropdown,
   Checkbox,
+  PageLoader,
 } from "@bigbinary/neetoui/v2";
 import { debounce } from "lodash";
 import { useHistory } from "react-router-dom";
@@ -147,7 +148,11 @@ const Dashboard = () => {
   }, [status, category]);
 
   if (loading) {
-    return <div className="w-screen h-screen"></div>;
+    return (
+      <div className="w-screen h-screen">
+        <PageLoader />
+      </div>
+    );
   }
 
   return (

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { Plus } from "@bigbinary/neeto-icons";
-import { Typography } from "@bigbinary/neetoui/v2";
+import { Typography, PageLoader } from "@bigbinary/neetoui/v2";
 
 import NewRedirection from "./NewRedirection";
 import RedirectionTable from "./RedirectionTable";
@@ -60,7 +60,11 @@ const RedirectionsPage = () => {
   }, [newRedirection]);
 
   if (loading) {
-    return <div className="w-screen h-screen"></div>;
+    return (
+      <div className="w-screen h-screen">
+        <PageLoader />
+      </div>
+    );
   }
 
   return (

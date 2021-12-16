@@ -7,6 +7,7 @@ import {
   Checkbox,
   Button,
   Label,
+  PageLoader,
 } from "@bigbinary/neetoui/v2";
 
 import siteSettingsApi from "../../../apis/siteSettings";
@@ -41,7 +42,7 @@ const GeneralPage = () => {
     }
   };
 
-  const handleSubmitPassword = async () => {
+  const handlePassword = async () => {
     setLoading(true);
     const values = isPassword
       ? { site_name: siteName, password: password }
@@ -76,7 +77,11 @@ const GeneralPage = () => {
   }, []);
 
   if (loading) {
-    return <div className="w-screen h-screen"></div>;
+    return (
+      <div className="mx-auto h-screen">
+        <PageLoader />
+      </div>
+    );
   }
 
   return (
@@ -133,7 +138,7 @@ const GeneralPage = () => {
             label="Save Changes"
             style="secondary"
             className="neeto-ui-bg-secondary-indigo neeto-ui-text-white"
-            onClick={() => handleSubmitPassword()}
+            onClick={() => handlePassword()}
             disabled={
               (!passwordValid && !passwordPresent && isPassword) ||
               siteName.trim().length === 0

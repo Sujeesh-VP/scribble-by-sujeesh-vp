@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { Check, Reorder, Delete, Edit } from "@bigbinary/neeto-icons";
-import { Typography, Input } from "@bigbinary/neetoui/v2";
+import { Typography, Input, PageLoader } from "@bigbinary/neetoui/v2";
 
 import categoriesApi from "../../../../apis/categories";
 
@@ -45,7 +45,11 @@ function CategoryRow({ item, fetchCategories }) {
   };
 
   if (loading) {
-    return <div className="w-screen h-screen"></div>;
+    return (
+      <div className="w-screen h-screen">
+        <PageLoader />
+      </div>
+    );
   }
 
   return (

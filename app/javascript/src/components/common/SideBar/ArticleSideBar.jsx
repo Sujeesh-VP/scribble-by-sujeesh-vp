@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useContext } from "react";
 
 import { Plus, Search, Close, CheckCircle } from "@bigbinary/neeto-icons";
-import { Typography, Input } from "@bigbinary/neetoui/v2";
+import { Typography, Input, PageLoader } from "@bigbinary/neetoui/v2";
 import { MenuBar } from "@bigbinary/neetoui/v2/layouts";
 import { debounce } from "lodash";
 
@@ -80,7 +80,11 @@ const ArticleSideBar = () => {
   }, [isSearchCollapsed, isInputCollapsed]);
 
   if (loading) {
-    return <div className="w-screen h-screen"></div>;
+    return (
+      <div className="w-screen h-screen">
+        <PageLoader />
+      </div>
+    );
   }
 
   return (

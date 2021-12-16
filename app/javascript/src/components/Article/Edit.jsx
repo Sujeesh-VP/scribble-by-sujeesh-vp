@@ -15,7 +15,7 @@ const EditArticle = () => {
 
   const history = useHistory();
 
-  const handleSubmitEdit = async values => {
+  const handleEdit = async values => {
     const { title, category, content, id } = values;
     try {
       await articlesApi.update({
@@ -46,7 +46,7 @@ const EditArticle = () => {
         status={status}
         setLoading={setLoading}
         details={props.state.details}
-        handleSubmitEdit={handleSubmitEdit}
+        handleEdit={handleEdit}
         loading={loading}
       />
     </div>

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+import { PageLoader } from "@bigbinary/neetoui/v2";
+
 import siteSettingsApi from "../../apis/siteSettings";
 
 const SettingsProvider = props => {
@@ -22,7 +24,11 @@ const SettingsProvider = props => {
   }, []);
 
   if (loading) {
-    return <div className="w-screen h-screen"></div>;
+    return (
+      <div className="w-screen h-screen">
+        <PageLoader />
+      </div>
+    );
   }
 
   return (

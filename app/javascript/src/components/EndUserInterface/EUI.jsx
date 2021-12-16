@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 
+import { PageLoader } from "@bigbinary/neetoui/v2";
 import { useParams } from "react-router-dom";
 
 import ArticleView from "./ArticleView";
@@ -57,7 +58,11 @@ const EUI = () => {
   }, [slug]);
 
   if (loading) {
-    return <div className="w-screen h-screen"></div>;
+    return (
+      <div className="w-screen h-screen">
+        <PageLoader />
+      </div>
+    );
   }
 
   return (
